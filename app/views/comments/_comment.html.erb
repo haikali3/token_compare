@@ -1,0 +1,26 @@
+<style>
+  .comment-container {
+    background-color: #333333;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  .comment-container p {
+    color: #e0e0e0;
+  }
+  .comment-container strong {
+    color: #bb86fc;
+  }
+</style>
+
+<div class="comment-container">
+  <p>
+    <strong>Commenter:</strong>
+    <%= comment.commenter %>
+  </p>
+
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body %>
+  </p>
+</div>
