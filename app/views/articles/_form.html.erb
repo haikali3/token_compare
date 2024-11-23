@@ -1,0 +1,104 @@
+
+<style>
+  body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+  }
+
+  h1 {
+    color: #bb86fc;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li {
+    background-color: #333333;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
+  }
+
+  a {
+    color: #bb86fc;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  p {
+    color: #e0e0e0;
+    margin: 5px 0;
+  }
+
+  .back-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #bb86fc;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #333333;
+    background-color: #222222;
+    color: #ffffff;
+  }
+
+  .form-group .error-message {
+    color: #ff6b6b;
+    margin-top: 5px;
+  }
+
+  .form-submit {
+    background-color: #bb86fc;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+</style>
+
+<%= form_with model: article do |form| %>
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+    <% article.errors.full_messages_for(:title).each do |message| %>
+      <div class="error-message"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :body %>
+    <%= form.text_area :body %>
+    <% article.errors.full_messages_for(:body).each do |message| %>
+      <div class="error-message"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit class: "form-submit" %>
+  </div>
+<% end %>
