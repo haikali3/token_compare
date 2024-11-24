@@ -1,23 +1,45 @@
-<h1 class="text-2xl font-bold mb-4">Crypto Comparison</h1>
-<table class="min-w-full bg-white border border-gray-200">
-  <thead>
-    <tr>
-      <th class="px-4 py-2 border-b-2 border-gray-200 bg-gray-100 text-left">Name</th>
-      <th class="px-4 py-2 border-b-2 border-gray-200 bg-gray-100 text-left">Symbol</th>
-      <th class="px-4 py-2 border-b-2 border-gray-200 bg-gray-100 text-left">Price</th>
-      <th class="px-4 py-2 border-b-2 border-gray-200 bg-gray-100 text-left">Market Cap</th>
-      <th class="px-4 py-2 border-b-2 border-gray-200 bg-gray-100 text-left">24h Volume</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @cryptos.each do |crypto| %>
-      <tr class="even:bg-gray-100 hover:bg-gray-200">
-        <td class="px-4 py-2 border-b border-gray-200"><%= crypto["name"] %></td>
-        <td class="px-4 py-2 border-b border-gray-200"><%= crypto["symbol"] %></td>
-        <td class="px-4 py-2 border-b border-gray-200">$<%= number_to_currency(crypto["current_price"], unit: '') %></td>
-        <td class="px-4 py-2 border-b border-gray-200">$<%= number_to_currency(crypto["market_cap"], unit: '') %></td>
-        <td class="px-4 py-2 border-b border-gray-200">$<%= number_to_currency(crypto["total_volume"], unit: '') %></td>
+<div class="flex flex-col">
+</div>
+<div class="container mx-auto mt-8">
+  <h1 class="text-2xl font-bold mb-4">Crypto Comparison</h1>
+  <table class="min-w-full bg-white border border-gray-200 mb-4">
+    <thead>
+      <tr>
+        <th class="px-4 py-2 border-b-2 border-gray-200 bg-gray-100 text-left">Name</th>
+        <th class="px-4 py-2 border-b-2 border-gray-200 bg-gray-100 text-left">Symbol</th>
+        <th class="px-4 py-2 border-b-2 border-gray-200 bg-gray-100 text-left">Price</th>
+        <th class="px-4 py-2 border-b-2 border-gray-200 bg-gray-100 text-left">Market Cap</th>
+        <th class="px-4 py-2 border-b-2 border-gray-200 bg-gray-100 text-left">24h Volume</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @cryptos.each do |crypto| %>
+        <tr class="even:bg-gray-100 hover:bg-gray-200">
+          <td class="px-4 py-2 border-b border-gray-200"><%= crypto["name"] %></td>
+          <td class="px-4 py-2 border-b border-gray-200"><%= crypto["symbol"] %></td>
+          <td class="px-4 py-2 border-b border-gray-200">$<%= number_to_currency(crypto["current_price"], unit: '') %></td>
+          <td class="px-4 py-2 border-b border-gray-200">$<%= number_to_currency(crypto["market_cap"], unit: '') %></td>
+          <td class="px-4 py-2 border-b border-gray-200">$<%= number_to_currency(crypto["total_volume"], unit: '') %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div>
+    <div class="mx-auto mt-8">
+      <h1 class="text-2xl font-bold mb-6">Crypto Dashboard</h1>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <h1 class="text-2xl font-bold mb-4">Bitcoin Price Dashboard (Last 5 Days)</h1>
+        <% if @bitcoin_prices.any? %>
+          <div class="bg-white p-6 shadow rounded-lg">
+            <h2 class="text-lg font-semibold mb-4">Bitcoin Prices (USD)</h2>
+            <%= line_chart @bitcoin_prices, xtitle: "Date", ytitle: "Price (USD)", height: "400px" %>
+          </div>
+        <% else %>
+          <div class="bg-red-100 p-4 border border-red-500 rounded shadow">
+            <p class="text-red-600">No data available for Bitcoin prices. Please try again later.</p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

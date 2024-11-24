@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   root "cryptos#index"
 
   # routes for token
-  resources :cryptos, only: [ :index ]
+  resources :cryptos, only: [ :index, :show ]
 end
