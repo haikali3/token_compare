@@ -61,3 +61,11 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "htmlbeautifier"
+gem "httparty"
+gem "http"
+gem "dotenv-rails"
+gem "tailwindcss-rails", "~> 3.0"
+gem "chartkick"
+gem "groupdate"
